@@ -28,30 +28,95 @@ Screens:
                 Control: GroupContainer@1.5.0
                 Variant: AutoLayout
                 Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
                   FillPortions: =0
                   Height: =68
                   LayoutAlignItems: =LayoutAlignItems.Center
                   LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =12
                   LayoutMinHeight: =16
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
                 Children:
-                  - TableNameLabel1:
-                      Control: Label@2.5.1
+                  - HeaderLogoIcon1:
+                      Control: Classic/Icon@2.5.0
                       Properties:
-                        AlignInContainer: =AlignInContainer.Stretch
-                        BorderColor: =RGBA(0, 0, 0, 1)
-                        Color: =RGBA(255, 255, 255, 1)
-                        DisabledColor: =RGBA(186, 186, 186, 1)
-                        Fill: =RGBA(0, 120, 212, 1)
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        Color: =RGBA(0, 120, 212, 1)
+                        DisabledColor: =RGBA(0, 120, 212, 1)
+                        DisplayMode: =DisplayMode.Disabled
+                        FillPortions: =0
+                        Height: =40
+                        Icon: =Icon.Hexagon
+                        Width: =40
+                  - HeaderTitleGroup1:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
                         FillPortions: =1
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =2
+                        LayoutMinWidth: =16
+                      Children:
+                        - HeaderTitleLabel1:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              Color: =RGBA(50, 49, 48, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Semibold
+                              Height: =28
+                              Size: =20
+                              Text: ="CST Project Hub"
+                              Wrap: =false
+                        - HeaderSubtitleLabel1:
+                            Control: Label@2.5.1
+                            Properties:
+                              AutoHeight: =true
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              Color: =RGBA(96, 94, 92, 1)
+                              Font: =Font.'Open Sans'
+                              Height: =18
+                              Size: =11
+                              Text: ="Single Source of Truth for Project Updates"
+                              Wrap: =false
+                  - HeaderNewProjectButton1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(0, 120, 212, 1)
+                        BorderStyle: =BorderStyle.None
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledColor: =RGBA(161, 159, 157, 1)
+                        DisabledFill: =RGBA(242, 242, 241, 0)
+                        Fill: =RGBA(0, 120, 212, 1)
+                        FillPortions: =0
                         Font: =Font.'Open Sans'
                         FontWeight: =FontWeight.Semibold
-                        Height: =68
-                        PaddingBottom: =16
-                        PaddingLeft: =16
-                        PaddingRight: =16
-                        PaddingTop: =16
-                        Size: =16
-                        Text: =DataSourceInfo([@'SharePoint List Carrier'], DataSourceInfo.DisplayName)
+                        Height: =40
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(16, 110, 190, 1)
+                        OnSelect: |-
+                          =NewForm(Form1); UpdateContext({ newMode: true, itemSelected: true, activeTab: "Details" });
+                        PressedBorderColor: =RGBA(0, 69, 120, 1)
+                        PressedColor: =RGBA(255, 255, 255, 1)
+                        PressedFill: =RGBA(16, 110, 190, 1)
+                        RadiusBottomLeft: =6
+                        RadiusBottomRight: =6
+                        RadiusTopLeft: =6
+                        RadiusTopRight: =6
+                        Text: ="+ New Project"
+                        Width: =160
             - BodyContainer1:
                 Control: GroupContainer@1.5.0
                 Variant: AutoLayout
@@ -82,6 +147,181 @@ Screens:
                         PaddingTop: =10
                         Visible: =If(And(MainScreen1.Size = ScreenSize.Small, Or(newMode, editMode, itemSelected)), false, true)
                       Children:
+                        - SearchContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(245, 245, 245, 1)
+                              FillPortions: =0
+                              Height: =44
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutMinWidth: =0
+                              RadiusBottomLeft: =6
+                              RadiusBottomRight: =6
+                              RadiusTopLeft: =6
+                              RadiusTopRight: =6
+                            Children:
+                              - SearchInput1:
+                                  Control: Classic/TextInput@2.3.2
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    BorderStyle: =BorderStyle.None
+                                    BorderThickness: =1
+                                    Color: =RGBA(70, 68, 64, 1)
+                                    Default: =""
+                                    DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
+                                    DisabledColor: =ColorFade(Self.Color, 40%)
+                                    DisabledFill: =Self.Fill
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    FillPortions: =1
+                                    FocusedBorderThickness: =3
+                                    Font: =Font.'Open Sans'
+                                    Height: =44
+                                    HintText: ="Search projects by name, PM, business, keyword..."
+                                    HoverBorderColor: =Self.Color
+                                    HoverColor: =Self.Color
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    LayoutMinWidth: =0
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =14
+                              - SearchIcon1:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    Color: =RGBA(0, 120, 212, 1)
+                                    DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                                    DisabledColor: =RGBA(119, 119, 119, 1)
+                                    Height: =44
+                                    Icon: =Icon.Search
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    PaddingBottom: =10
+                                    PaddingLeft: =10
+                                    PaddingRight: =10
+                                    PaddingTop: =10
+                                    Width: =44
+                        - FiltersContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              FillPortions: =0
+                              LayoutAlignItems: =LayoutAlignItems.End
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutWrap: =true
+                            Children:
+                              - FilterBusinessGroup1:
+                                  Control: GroupContainer@1.5.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =2
+                                    Width: =140
+                                  Children:
+                                    - FilterBusinessLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Business"
+                                    - FilterBusinessInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =""
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =32
+                                          HintText: ="All"
+                                          Size: =11
+                              - FilterOwnerGroup1:
+                                  Control: GroupContainer@1.5.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =2
+                                    Width: =140
+                                  Children:
+                                    - FilterOwnerLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Owner"
+                                    - FilterOwnerInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =""
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =32
+                                          HintText: ="All"
+                                          Size: =11
+                              - FilterStatusGroup1:
+                                  Control: GroupContainer@1.5.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =2
+                                    Width: =140
+                                  Children:
+                                    - FilterStatusLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Status"
+                                    - FilterStatusInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =""
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =32
+                                          HintText: ="All"
+                                          Size: =11
+                              - ClearFiltersButton1:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(0, 120, 212, 1)
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    Font: =Font.'Open Sans'
+                                    Height: =32
+                                    HoverColor: =RGBA(16, 110, 190, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    OnSelect: |-
+                                      =Reset(SearchInput1); Reset(FilterBusinessInput1); Reset(FilterOwnerInput1); Reset(FilterStatusInput1);
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =11
+                                    Text: ="Clear Filters"
+                                    Width: =90
                         - RecordsGallery1:
                             Control: Gallery@2.15.0
                             Variant: BrowseLayout_Vertical_ThreeTextOneImageVariant_ver5.0
@@ -91,34 +331,51 @@ Screens:
                               Default: =CurrentItem
                               DisplayMode: =DisplayMode.View
                               Fill: =RGBA(250, 250, 250, 1)
-                              Items: =Search([@'SharePoint List Carrier'], SearchInput1.Text, Title, Title)
+                              Items: |-
+                                =Filter(
+                                  [@'SharePoint List Carrier'],
+                                  (IsBlank(SearchInput1.Text) || SearchInput1.Text in Title || SearchInput1.Text in 'Program Manager' || SearchInput1.Text in 'BU / Segment / Selling Region' || SearchInput1.Text in Status),
+                                  (IsBlank(FilterBusinessInput1.Text) || FilterBusinessInput1.Text in 'BU / Segment / Selling Region'),
+                                  (IsBlank(FilterOwnerInput1.Text) || FilterOwnerInput1.Text in 'Program Manager'),
+                                  (IsBlank(FilterStatusInput1.Text) || FilterStatusInput1.Text in Status)
+                                )
                               OnSelect: |-
-                                =UpdateContext({ itemSelected: true, CurrentItem: ThisItem })
+                                =UpdateContext({ itemSelected: true, CurrentItem: ThisItem, activeTab: "Overview" })
                               TemplateFill: =If(ThisItem.IsSelected, RGBA(230, 230, 230, 1), RGBA(0, 0, 0, 0))
+                              TemplateHeight: =148
                               Width: =350
                             Children:
-                              - Image2:
-                                  Control: Image@2.2.3
+                              - StatusStripe1:
+                                  Control: Rectangle@2.3.0
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 0)
-                                    BorderStyle: =BorderStyle.None
-                                    BorderThickness: =2
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
-                                    Height: =84
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    Fill: =Switch(true, "At Risk" in ThisItem.Status, RGBA(240, 143, 30, 1), "Risk" in ThisItem.Status, RGBA(240, 143, 30, 1), "Delay" in ThisItem.Status, RGBA(240, 143, 30, 1), "Hold" in ThisItem.Status, RGBA(232, 17, 35, 1), "Complete" in ThisItem.Status, RGBA(16, 124, 16, 1), "On Track" in ThisItem.Status, RGBA(16, 124, 16, 1), RGBA(166, 166, 166, 1))
+                                    Height: =18
                                     OnSelect: =Select(Parent)
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
-                                    RadiusBottomLeft: =8
-                                    RadiusBottomRight: =8
-                                    RadiusTopLeft: =8
-                                    RadiusTopRight: =8
-                                    Width: =84
+                                    RadiusBottomLeft: =9
+                                    RadiusBottomRight: =9
+                                    RadiusTopLeft: =9
+                                    RadiusTopRight: =9
+                                    Width: =If(IsBlank(ThisItem.Status), 90, 16 + Len(ThisItem.Status) * 6)
                                     X: =16
-                                    Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                                    Y: =12
+                              - StatusPillLabel3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(255, 255, 255, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =18
+                                    OnSelect: =Select(Parent)
+                                    Size: =9
+                                    Text: =If(IsBlank(ThisItem.Status), "No Status", ThisItem.Status)
+                                    VerticalAlign: =VerticalAlign.Middle
+                                    Width: =StatusStripe1.Width
+                                    X: =StatusStripe1.X
+                                    Y: =StatusStripe1.Y
                               - Title3:
                                   Control: Label@2.5.1
                                   Properties:
@@ -126,39 +383,19 @@ Screens:
                                     Color: =RGBA(50, 49, 48, 1)
                                     DisabledColor: =RGBA(161, 159, 157, 1)
                                     Font: =Font.'Segoe UI'
-                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-                                    Height: =Self.Size * 1.8
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =24
                                     OnSelect: =Select(Parent)
                                     PaddingBottom: =0
-                                    PaddingLeft: =12
+                                    PaddingLeft: =0
                                     PaddingRight: =0
                                     PaddingTop: =0
-                                    Size: =14
+                                    Size: =15
                                     Text: =ThisItem.Title
                                     VerticalAlign: =VerticalAlign.Top
-                                    Width: =Parent.TemplateWidth - 185
-                                    X: =115
-                                    Y: =(Parent.TemplateHeight - (Self.Size*1.8 + Subtitle3.Size*1.8 + 2 + Body3.Size*1.8)) / 2
-                              - Subtitle3:
-                                  Control: Label@2.5.1
-                                  Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 1)
-                                    Color: =RGBA(96, 94, 92, 1)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    Font: =Font.'Segoe UI'
-                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-                                    Height: =21
-                                    OnSelect: =Select(Parent)
-                                    PaddingBottom: =0
-                                    PaddingLeft: =12
-                                    PaddingRight: =0
-                                    PaddingTop: =0
-                                    Size: =12
-                                    Text: =ThisItem.'Project Type'
-                                    VerticalAlign: =VerticalAlign.Top
-                                    Width: =173
-                                    X: =Title3.X
-                                    Y: =Title3.Y + Title3.Height
+                                    Width: =Parent.TemplateWidth - 32
+                                    X: =16
+                                    Y: =38
                               - Body3:
                                   Control: Label@2.5.1
                                   Properties:
@@ -166,19 +403,56 @@ Screens:
                                     Color: =RGBA(96, 94, 92, 1)
                                     DisabledColor: =RGBA(161, 159, 157, 1)
                                     Font: =Font.'Segoe UI'
-                                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-                                    Height: =31
+                                    FontWeight: =FontWeight.Normal
+                                    Height: =18
                                     OnSelect: =Select(Parent)
                                     PaddingBottom: =0
-                                    PaddingLeft: =12
+                                    PaddingLeft: =0
                                     PaddingRight: =0
                                     PaddingTop: =0
-                                    Size: =12
-                                    Text: =ThisItem.'Program Manager'
+                                    Size: =11
+                                    Text: |-
+                                      ="PM: " & If(IsBlank(ThisItem.'Program Manager'), "-", ThisItem.'Program Manager') & "    Business: " & If(IsBlank(ThisItem.'BU / Segment / Selling Region'), "-", ThisItem.'BU / Segment / Selling Region')
                                     VerticalAlign: =VerticalAlign.Top
-                                    Width: =165
+                                    Width: =Parent.TemplateWidth - 32
                                     X: =Title3.X
-                                    Y: =Subtitle3.Y + Subtitle3.Height
+                                    Y: =Title3.Y + Title3.Height
+                              - Subtitle3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 1)
+                                    Color: =RGBA(96, 94, 92, 1)
+                                    DisabledColor: =RGBA(161, 159, 157, 1)
+                                    Font: =Font.'Segoe UI'
+                                    FontWeight: =FontWeight.Normal
+                                    Height: =18
+                                    OnSelect: =Select(Parent)
+                                    PaddingBottom: =0
+                                    PaddingLeft: =0
+                                    PaddingRight: =0
+                                    PaddingTop: =0
+                                    Size: =11
+                                    Text: |-
+                                      ="Next Milestone: " & If(IsBlank(ThisItem.'Next Passport'), "-", ThisItem.'Next Passport') & If(IsBlank(ThisItem.'Passport Review Date'), "", " (" & ThisItem.'Passport Review Date' & ")")
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =Parent.TemplateWidth - 32
+                                    X: =Title3.X
+                                    Y: =Body3.Y + Body3.Height
+                              - ViewProjectLabel3:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(0, 120, 212, 1)
+                                    Font: =Font.'Segoe UI'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =20
+                                    OnSelect: =Select(Parent)
+                                    Size: =11
+                                    Text: ="View Project  >"
+                                    Width: =150
+                                    X: =Title3.X
+                                    Y: =Subtitle3.Y + Subtitle3.Height + 4
                               - NextArrow3:
                                   Control: Classic/Icon@2.5.0
                                   Properties:
@@ -224,125 +498,28 @@ Screens:
                                     OnSelect: =Select(Parent)
                                     Visible: =ThisItem.IsSelected
                                     Width: =4
-                        - SearchContainer1:
-                            Control: GroupContainer@1.5.0
-                            Variant: AutoLayout
-                            Properties:
-                              DropShadow: =DropShadow.None
-                              Fill: =RGBA(245, 245, 245, 1)
-                              FillPortions: =0
-                              Height: =44
-                              LayoutDirection: =LayoutDirection.Horizontal
-                              LayoutMinWidth: =0
-                              RadiusBottomLeft: =0
-                              RadiusBottomRight: =0
-                              RadiusTopLeft: =0
-                              RadiusTopRight: =0
-                            Children:
-                              - SearchInput1:
-                                  Control: Classic/TextInput@2.3.2
-                                  Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 1)
-                                    BorderStyle: =BorderStyle.None
-                                    BorderThickness: =1
-                                    Color: =RGBA(70, 68, 64, 1)
-                                    Default: =""
-                                    DisabledBorderColor: =ColorFade(Self.BorderColor, 40%)
-                                    DisabledColor: =ColorFade(Self.Color, 40%)
-                                    DisabledFill: =Self.Fill
-                                    Fill: =RGBA(0, 0, 0, 0)
-                                    FillPortions: =1
-                                    FocusedBorderThickness: =3
-                                    Font: =Font.'Open Sans'
-                                    Height: =44
-                                    HintText: ="Search"
-                                    HoverBorderColor: =Self.Color
-                                    HoverColor: =Self.Color
-                                    HoverFill: =RGBA(0, 0, 0, 0)
-                                    LayoutMinWidth: =0
-                                    PressedFill: =RGBA(0, 0, 0, 0)
-                                    Size: =14
-                              - SearchIcon1:
-                                  Control: Classic/Icon@2.5.0
-                                  Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 1)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(56, 56, 56, 1)
-                                    DisabledColor: =RGBA(119, 119, 119, 1)
-                                    Height: =44
-                                    Icon: =Icon.Search
-                                    LayoutMinHeight: =16
-                                    LayoutMinWidth: =16
-                                    PaddingBottom: =10
-                                    PaddingLeft: =10
-                                    PaddingRight: =10
-                                    PaddingTop: =10
-                                    Width: =44
-                        - NewRecordButtonBarContainer1:
+                        - FooterCountContainer1:
                             Control: GroupContainer@1.5.0
                             Variant: AutoLayout
                             Properties:
                               DropShadow: =DropShadow.None
                               FillPortions: =0
-                              Height: =44
+                              Height: =30
+                              LayoutAlignItems: =LayoutAlignItems.Center
                               LayoutDirection: =LayoutDirection.Horizontal
-                              RadiusBottomLeft: =0
-                              RadiusBottomRight: =0
-                              RadiusTopLeft: =0
-                              RadiusTopRight: =0
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
                             Children:
-                              - NewRecordAddIcon1:
-                                  Control: Classic/Icon@2.5.0
-                                  Properties:
-                                    BorderColor: =RGBA(0, 0, 0, 0)
-                                    Color: =RGBA(0, 120, 212, 1)
-                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
-                                    DisabledColor: =RGBA(225, 223, 221, 1)
-                                    DisabledFill: =RGBA(0, 0, 0, 0)
-                                    FocusedBorderThickness: =4
-                                    Height: =44
-                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
-                                    HoverColor: =RGBA(16, 110, 190, 1)
-                                    HoverFill: =RGBA(0, 0, 0, 0)
-                                    Icon: =Icon.Add
-                                    OnSelect: |-
-                                      =NewForm(Form1); UpdateContext({ newMode: true });
-                                    PaddingBottom: =10
-                                    PaddingLeft: =10
-                                    PaddingRight: =10
-                                    PaddingTop: =10
-                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
-                                    PressedColor: =RGBA(16, 110, 190, 1)
-                                    PressedFill: =RGBA(0, 0, 0, 0)
-                                    Width: =44
-                              - NewRecordLabel1:
+                              - FooterCountLabel1:
                                   Control: Label@2.5.1
                                   Properties:
+                                    Align: =Align.Center
                                     BorderColor: =RGBA(0, 0, 0, 0)
                                     BorderStyle: =BorderStyle.None
-                                    BorderThickness: =2
-                                    Color: =RGBA(50, 49, 48, 1)
-                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                                    DisabledColor: =RGBA(161, 159, 157, 1)
-                                    FillPortions: =1
-                                    FocusedBorderThickness: =4
-                                    Font: =Font.'Segoe UI'
-                                    Height: =44
-                                    Text: ="New"
-                        - RecordsListSeparator1:
-                            Control: Rectangle@2.3.0
-                            Properties:
-                              AlignInContainer: =AlignInContainer.Stretch
-                              BorderColor: =RGBA(0, 0, 0, 0)
-                              BorderStyle: =BorderStyle.None
-                              BorderThickness: =2
-                              DisabledFill: =RGBA(161, 159, 157, 1)
-                              Fill: =RGBA(225, 223, 221, 1)
-                              FocusedBorderThickness: =4
-                              Height: =1
-                              HoverFill: =RGBA(0, 120, 212, 1)
-                              LayoutMinWidth: =200
-                              PressedFill: =RGBA(0, 120, 212, 1)
+                                    Color: =RGBA(96, 94, 92, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =20
+                                    Size: =11
+                                    Text: ="Showing " & CountRows(RecordsGallery1.AllItems) & " of " & CountRows([@'SharePoint List Carrier']) & " projects"
                   - RightContainer1:
                       Control: GroupContainer@1.5.0
                       Variant: AutoLayout
@@ -370,7 +547,7 @@ Screens:
                             Properties:
                               Fill: =RGBA(255, 255, 255, 1)
                               FillPortions: =0
-                              Height: =50
+                              Height: =60
                               LayoutAlignItems: =LayoutAlignItems.Center
                               LayoutDirection: =LayoutDirection.Horizontal
                             Children:
@@ -410,12 +587,50 @@ Screens:
                                     Color: =RGBA(50, 49, 48, 1)
                                     DisabledBorderColor: =RGBA(0, 0, 0, 0)
                                     DisabledColor: =RGBA(161, 159, 157, 1)
-                                    FillPortions: =1
-                                    FocusedBorderThickness: =4
                                     Font: =Font.'Segoe UI'
-                                    FontWeight: =FontWeight.Semibold
+                                    FontWeight: =FontWeight.Bold
                                     PaddingLeft: =30
-                                    Text: =RecordsGallery1.Selected.'Title'
+                                    Size: =20
+                                    Text: =If(newMode, "New Project", RecordsGallery1.Selected.'Title')
+                              - SelectedRecordStatusPill1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    Align: =Align.Center
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =Switch(true, "At Risk" in RecordsGallery1.Selected.Status, RGBA(240, 143, 30, 1), "Risk" in RecordsGallery1.Selected.Status, RGBA(240, 143, 30, 1), "Delay" in RecordsGallery1.Selected.Status, RGBA(240, 143, 30, 1), "Hold" in RecordsGallery1.Selected.Status, RGBA(232, 17, 35, 1), "Complete" in RecordsGallery1.Selected.Status, RGBA(16, 124, 16, 1), "On Track" in RecordsGallery1.Selected.Status, RGBA(16, 124, 16, 1), RGBA(166, 166, 166, 1))
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =24
+                                    Size: =11
+                                    Text: ="* " & If(IsBlank(RecordsGallery1.Selected.Status), "No Status", RecordsGallery1.Selected.Status)
+                                    Visible: =!newMode
+                                    Width: =140
+                              - CloseDetailButton1:
+                                  Control: Classic/Icon@2.5.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    Color: =RGBA(96, 94, 92, 1)
+                                    DisabledBorderColor: =RGBA(245, 245, 245, 1)
+                                    DisabledColor: =RGBA(225, 223, 221, 1)
+                                    DisabledFill: =RGBA(0, 0, 0, 0)
+                                    FillPortions: =0
+                                    FocusedBorderThickness: =4
+                                    Height: =40
+                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                                    HoverColor: =RGBA(16, 110, 190, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    Icon: =Icon.Cancel
+                                    OnSelect: |-
+                                      =ResetForm(Form1); UpdateContext({ itemSelected: false, editMode: false, newMode: false, activeTab: "Overview" });
+                                    PaddingBottom: =8
+                                    PaddingLeft: =8
+                                    PaddingRight: =8
+                                    PaddingTop: =8
+                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                                    PressedColor: =RGBA(16, 110, 190, 1)
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Width: =40
                               - SubmitFormButton1:
                                   Control: Classic/Icon@2.5.0
                                   Properties:
@@ -482,7 +697,7 @@ Screens:
                                     HoverFill: =RGBA(0, 0, 0, 0)
                                     Icon: =Icon.Edit
                                     OnSelect: |-
-                                      =UpdateContext({ editMode: true, selectedRecord: RecordsGallery1.Selected })
+                                      =UpdateContext({ editMode: true, selectedRecord: RecordsGallery1.Selected, activeTab: "Details" })
                                     PaddingBottom: =12
                                     PaddingLeft: =12
                                     PaddingRight: =12
@@ -519,12 +734,432 @@ Screens:
                                     TabIndex: =0
                                     Visible: =And(!editMode, !newMode, !deleteMode)
                                     Width: =50
+                        - TabStripContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(255, 255, 255, 1)
+                              FillPortions: =0
+                              Height: =40
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =4
+                              Visible: =!newMode
+                            Children:
+                              - TabOverviewBtn1:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =If(Coalesce(activeTab, "Overview") = "Overview", RGBA(0, 120, 212, 1), RGBA(96, 94, 92, 1))
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =If(Coalesce(activeTab, "Overview") = "Overview", FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =40
+                                    HoverColor: =RGBA(0, 120, 212, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    OnSelect: =UpdateContext({ activeTab:"Overview" })
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =12
+                                    Text: ="Overview"
+                                    Width: =110
+                              - TabDetailsBtn1:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =If(Coalesce(activeTab, "Overview") = "Details", RGBA(0, 120, 212, 1), RGBA(96, 94, 92, 1))
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =If(Coalesce(activeTab, "Overview") = "Details", FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =40
+                                    HoverColor: =RGBA(0, 120, 212, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    OnSelect: =UpdateContext({ activeTab:"Details" })
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =12
+                                    Text: ="Details"
+                                    Width: =110
+                              - TabDocumentsBtn1:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =If(Coalesce(activeTab, "Overview") = "Documents", RGBA(0, 120, 212, 1), RGBA(96, 94, 92, 1))
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =If(Coalesce(activeTab, "Overview") = "Documents", FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =40
+                                    HoverColor: =RGBA(0, 120, 212, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    OnSelect: =UpdateContext({ activeTab:"Documents" })
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =12
+                                    Text: ="Documents (" & CountRows(RecordsGallery1.Selected.Attachments) & ")"
+                                    Width: =130
+                              - TabHistoryBtn1:
+                                  Control: Classic/Button@2.2.0
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =If(Coalesce(activeTab, "Overview") = "History", RGBA(0, 120, 212, 1), RGBA(96, 94, 92, 1))
+                                    Fill: =RGBA(0, 0, 0, 0)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =If(Coalesce(activeTab, "Overview") = "History", FontWeight.Semibold, FontWeight.Normal)
+                                    Height: =40
+                                    HoverColor: =RGBA(0, 120, 212, 1)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    OnSelect: =UpdateContext({ activeTab:"History" })
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                                    Size: =12
+                                    Text: ="History"
+                                    Width: =110
+                        - OverviewContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(255, 255, 255, 1)
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =20
+                              PaddingBottom: =16
+                              PaddingLeft: =20
+                              PaddingRight: =20
+                              PaddingTop: =16
+                              Visible: =And(itemSelected, !newMode, Coalesce(activeTab, "Overview") = "Overview")
+                            Children:
+                              - OvwLeftColumn1:
+                                  Control: GroupContainer@1.5.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    FillPortions: =2
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =18
+                                  Children:
+                                    - OvwSummaryHeader1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =22
+                                          Size: =14
+                                          Text: ="Project Summary"
+                                    - OvwSummaryGrid1:
+                                        Control: GroupContainer@1.5.0
+                                        Variant: AutoLayout
+                                        Properties:
+                                          LayoutDirection: =LayoutDirection.Vertical
+                                          LayoutGap: =8
+                                        Children:
+                                          - OvwOwnerRow1:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                AutoHeight: =true
+                                                BorderColor: =RGBA(0, 0, 0, 0)
+                                                BorderStyle: =BorderStyle.None
+                                                Color: =RGBA(50, 49, 48, 1)
+                                                Font: =Font.'Open Sans'
+                                                Height: =20
+                                                Size: =12
+                                                Text: |-
+                                                  ="Owner:  " & If(IsBlank(RecordsGallery1.Selected.'Program Manager'), "-", RecordsGallery1.Selected.'Program Manager')
+                                          - OvwBusinessRow1:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                AutoHeight: =true
+                                                BorderColor: =RGBA(0, 0, 0, 0)
+                                                BorderStyle: =BorderStyle.None
+                                                Color: =RGBA(50, 49, 48, 1)
+                                                Font: =Font.'Open Sans'
+                                                Height: =20
+                                                Size: =12
+                                                Text: |-
+                                                  ="Business:  " & If(IsBlank(RecordsGallery1.Selected.'BU / Segment / Selling Region'), "-", RecordsGallery1.Selected.'BU / Segment / Selling Region')
+                                          - OvwProgramTypeRow1:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                AutoHeight: =true
+                                                BorderColor: =RGBA(0, 0, 0, 0)
+                                                BorderStyle: =BorderStyle.None
+                                                Color: =RGBA(50, 49, 48, 1)
+                                                Font: =Font.'Open Sans'
+                                                Height: =20
+                                                Size: =12
+                                                Text: |-
+                                                  ="Program Type:  " & If(IsBlank(RecordsGallery1.Selected.'Program Type'), "-", RecordsGallery1.Selected.'Program Type')
+                                          - OvwPriorityRow1:
+                                              Control: Label@2.5.1
+                                              Properties:
+                                                AutoHeight: =true
+                                                BorderColor: =RGBA(0, 0, 0, 0)
+                                                BorderStyle: =BorderStyle.None
+                                                Color: =RGBA(50, 49, 48, 1)
+                                                Font: =Font.'Open Sans'
+                                                Height: =20
+                                                Size: =12
+                                                Text: |-
+                                                  ="Priority:  " & If(IsBlank(RecordsGallery1.Selected.Priority), "-", Text(RecordsGallery1.Selected.Priority))
+                                    - OvwMilestoneHeader1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =22
+                                          Size: =14
+                                          Text: ="Key Milestone"
+                                    - OvwMilestoneNameRow1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =20
+                                          Size: =12
+                                          Text: =If(IsBlank(RecordsGallery1.Selected.'Next Passport'), "No milestone set", RecordsGallery1.Selected.'Next Passport')
+                                    - OvwMilestoneDateRow1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =18
+                                          Size: =11
+                                          Text: |-
+                                            =If(IsBlank(RecordsGallery1.Selected.'Passport Review Date'), "", "Review date: " & RecordsGallery1.Selected.'Passport Review Date')
+                                    - OvwUpdatesHeader1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =22
+                                          Size: =14
+                                          Text: ="Recent Updates"
+                                    - OvwLastUpdateRow1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =20
+                                          Size: =12
+                                          Text: =If(IsBlank(RecordsGallery1.Selected.'Project Staus Notes'), "No notes yet.", RecordsGallery1.Selected.'Project Staus Notes')
+                                          Wrap: =true
+                                    - OvwLastUpdateMetaRow1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =32
+                                          Size: =10
+                                          Text: ="Last modified " & Text(RecordsGallery1.Selected.Modified, "mmm d, yyyy") & ".  Full change history is on the History tab."
+                                          Wrap: =true
+                              - OvwRightColumn1:
+                                  Control: GroupContainer@1.5.0
+                                  Variant: AutoLayout
+                                  Properties:
+                                    Fill: =RGBA(250, 250, 250, 1)
+                                    FillPortions: =1
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutGap: =10
+                                    PaddingBottom: =14
+                                    PaddingLeft: =14
+                                    PaddingRight: =14
+                                    PaddingTop: =14
+                                    RadiusBottomLeft: =8
+                                    RadiusBottomRight: =8
+                                    RadiusTopLeft: =8
+                                    RadiusTopRight: =8
+                                  Children:
+                                    - OvwUpdateHeader1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =20
+                                          Size: =14
+                                          Text: ="Update Project"
+                                    - OvwUpdateSubHeader1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="All changes are saved to the project repository."
+                                          Wrap: =true
+                                    - OvwStatusLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Status"
+                                    - OvwStatusInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =RecordsGallery1.Selected.Status
+                                          DelayOutput: =true
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =34
+                                          Size: =12
+                                    - OvwPriorityLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Priority"
+                                    - OvwPriorityInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =If(IsBlank(RecordsGallery1.Selected.Priority), "", Text(RecordsGallery1.Selected.Priority))
+                                          DelayOutput: =true
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Format: =TextFormat.Number
+                                          Height: =34
+                                          Size: =12
+                                    - OvwMilestoneLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Next Milestone Date"
+                                    - OvwMilestoneInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =RecordsGallery1.Selected.'Passport Review Date'
+                                          DelayOutput: =true
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =34
+                                          Size: =12
+                                    - OvwNotesLabel1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          AutoHeight: =true
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =16
+                                          Size: =10
+                                          Text: ="Update Notes"
+                                    - OvwNotesInput1:
+                                        Control: Classic/TextInput@2.3.2
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderThickness: =1
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Default: =RecordsGallery1.Selected.'Project Staus Notes'
+                                          DelayOutput: =true
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =90
+                                          Mode: =TextMode.MultiLine
+                                          Size: =12
+                                    - OvwSaveButton1:
+                                        Control: Classic/Button@2.2.0
+                                        Properties:
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(255, 255, 255, 1)
+                                          Fill: =RGBA(0, 120, 212, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =40
+                                          HoverFill: =RGBA(16, 110, 190, 1)
+                                          OnSelect: |-
+                                            =IfError(
+                                              Patch([@'SharePoint List Carrier'], RecordsGallery1.Selected, { Status: OvwStatusInput1.Text, Priority: Value(OvwPriorityInput1.Text), 'Passport Review Date': OvwMilestoneInput1.Text, 'Project Staus Notes': OvwNotesInput1.Text }),
+                                              Notify("Cannot save. Please check the values entered.", NotificationType.Error)
+                                            );
+                                            UpdateContext({ CurrentItem: RecordsGallery1.Selected });
+                                          RadiusBottomLeft: =6
+                                          RadiusBottomRight: =6
+                                          RadiusTopLeft: =6
+                                          RadiusTopRight: =6
+                                          Text: ="Save Changes"
+                                    - OvwCancelButton1:
+                                        Control: Classic/Button@2.2.0
+                                        Properties:
+                                          BorderColor: =RGBA(225, 223, 221, 1)
+                                          BorderStyle: =BorderStyle.Solid
+                                          Color: =RGBA(50, 49, 48, 1)
+                                          Fill: =RGBA(255, 255, 255, 1)
+                                          Font: =Font.'Open Sans'
+                                          Height: =40
+                                          HoverFill: =RGBA(245, 245, 245, 1)
+                                          OnSelect: |-
+                                            =Reset(OvwStatusInput1); Reset(OvwPriorityInput1); Reset(OvwMilestoneInput1); Reset(OvwNotesInput1);
+                                          RadiusBottomLeft: =6
+                                          RadiusBottomRight: =6
+                                          RadiusTopLeft: =6
+                                          RadiusTopRight: =6
+                                          Text: ="Cancel"
                         - MainContainer1:
                             Control: GroupContainer@1.5.0
                             Variant: AutoLayout
                             Properties:
                               Fill: =RGBA(255, 255, 255, 1)
                               LayoutDirection: =LayoutDirection.Vertical
+                              Visible: =Coalesce(activeTab, "Overview") = "Details"
                             Children:
                               - Form1:
                                   Control: Form@2.4.4
@@ -7720,6 +8355,140 @@ Screens:
                                                 Width: =30
                                                 Wrap: =false
                                                 Y: =DataCardKey54.Y
+                        - DocumentsContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(255, 255, 255, 1)
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =10
+                              PaddingBottom: =16
+                              PaddingLeft: =20
+                              PaddingRight: =20
+                              PaddingTop: =16
+                              Visible: =And(itemSelected, !newMode, activeTab = "Documents")
+                            Children:
+                              - DocHeader1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(50, 49, 48, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =22
+                                    Size: =14
+                                    Text: ="Documents (" & CountRows(RecordsGallery1.Selected.Attachments) & ")"
+                              - DocEmptyLabel1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(96, 94, 92, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =20
+                                    Size: =12
+                                    Text: ="No documents attached to this project yet."
+                                    Visible: =CountRows(RecordsGallery1.Selected.Attachments) = 0
+                              - DocGallery1:
+                                  Control: Gallery@2.15.0
+                                  Variant: BrowseLayout_Vertical_ThreeTextOneImageVariant_ver5.0
+                                  Properties:
+                                    AlignInContainer: =AlignInContainer.Stretch
+                                    Height: =300
+                                    Items: =RecordsGallery1.Selected.Attachments
+                                    TemplateHeight: =44
+                                    Visible: =CountRows(RecordsGallery1.Selected.Attachments) > 0
+                                  Children:
+                                    - DocFileIcon1:
+                                        Control: Classic/Icon@2.5.0
+                                        Properties:
+                                          Color: =RGBA(0, 120, 212, 1)
+                                          Height: =32
+                                          Icon: =Icon.Document
+                                          OnSelect: =Launch(ThisItem.Value)
+                                          Width: =32
+                                          X: =0
+                                          Y: =6
+                                    - DocFileName1:
+                                        Control: Label@2.5.1
+                                        Properties:
+                                          BorderColor: =RGBA(0, 0, 0, 0)
+                                          BorderStyle: =BorderStyle.None
+                                          Color: =RGBA(0, 120, 212, 1)
+                                          Font: =Font.'Open Sans'
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =32
+                                          OnSelect: =Launch(ThisItem.Value)
+                                          Size: =12
+                                          Text: =ThisItem.DisplayName
+                                          VerticalAlign: =VerticalAlign.Middle
+                                          Width: =Parent.TemplateWidth - 40
+                                          X: =40
+                                          Y: =6
+                        - HistoryContainer1:
+                            Control: GroupContainer@1.5.0
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              Fill: =RGBA(255, 255, 255, 1)
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =10
+                              PaddingBottom: =16
+                              PaddingLeft: =20
+                              PaddingRight: =20
+                              PaddingTop: =16
+                              Visible: =And(itemSelected, !newMode, activeTab = "History")
+                            Children:
+                              - HistHeader1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(50, 49, 48, 1)
+                                    Font: =Font.'Open Sans'
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =22
+                                    Size: =14
+                                    Text: ="History"
+                              - HistCreatedRow1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(50, 49, 48, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =20
+                                    Size: =12
+                                    Text: ="Created " & Text(RecordsGallery1.Selected.Created, "mmm d, yyyy") & " by " & RecordsGallery1.Selected.'Created By'.DisplayName
+                              - HistModifiedRow1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(50, 49, 48, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =20
+                                    Size: =12
+                                    Text: ="Last modified " & Text(RecordsGallery1.Selected.Modified, "mmm d, yyyy") & " by " & RecordsGallery1.Selected.'Modified By'.DisplayName
+                              - HistNoteRow1:
+                                  Control: Label@2.5.1
+                                  Properties:
+                                    AutoHeight: =true
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    Color: =RGBA(96, 94, 92, 1)
+                                    Font: =Font.'Open Sans'
+                                    Height: =40
+                                    Size: =11
+                                    Text: ="A detailed change log (who changed what, and when) is not tracked by this list yet. Turn on version history on the SharePoint list, or log updates in the Update Notes field on the Overview tab, to build a history here."
+                                    Wrap: =true
                   - DeleteConfirmDialogContainer1:
                       Control: GroupContainer@1.5.0
                       Variant: AutoLayout
